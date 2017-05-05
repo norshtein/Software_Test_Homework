@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+
+<script src="jquery/jquery.js"></script>
+<script src="jquery/jquery.min.js"></script>	
+<script src="bootstrap/js/bootstrap.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<style type="text/css">
+.filediv {
+position:relative;
+top:10px;
+}
+#testbtn {
+width:150px;
+}
+</style>
+<title>Insert title here</title>
+</head>
+<body>
+<h1 class="text-info">Programs Test page.<small>created by CZY and ZQB.</small></h1>
+<hr />
+
+<form class="form-inline" role="form" onsubmit="return false">
+		<div class="form-group col-sm-3">
+			<label for="sprogram" class="control-label">Program&nbsp;&nbsp;&nbsp;</label>
+			<select class="form-control" id="sprogram">
+				<option>triangle</option>
+				<option>calendar</option>
+				<option>computerSale</option>
+				<option>fare</option>
+			</select>
+		</div>
+		<div class="form-group col-sm-3 filediv">
+			<label for="testfile" class="sr-only">input file</label>
+			<input type="file" id="testfile"/>
+		</div>
+		<button class="btn btn-primary" id="testbtn">Test!</button>
+</form>
+<div>
+<br />
+<hr />
+<br />
+<!-- <a href="../test.txt" target="blank">Download the javaee.txt.</a>
+<a href="F:/Tools/eclipseneon/workspace/TestProgram2.0/WebContent/downloadfile/result2017_03_24_02_53_36.xls" target="blank">Download the excel file.</a> -->
+<div class="container">
+<table class="table table-striped table-bordered" id="errortable">
+</table>
+</div>
+</div>
+
+</body>
+
+<script>
+$("#testbtn").click(function(){
+	var selectprogram=$("#sprogram").val();
+	var filepath="E:\\qqfile\\846510629\\FileRecv\\fare_bouder.xls";
+	alert(selectprogram+" "+filepath);
+	$.ajax({
+		url : "test",
+		type: 'GET',
+		dataType:'json',
+		cache:false,
+		data:{
+			'program':selectprogram,
+			'testfile':filepath,
+		},
+		success:function(data){
+			 $("#errortable").html("");
+			 var thtml="<caption><big>Test Result</big></caption><thead>"
+		 			+"<tr>"
+		 			+"<th>Item</th>"
+		 			+"<th>Value</th>"
+		 			+"</tr>"		 			
+		 			+"</thead>"
+		 			+"<tbody>"
+		 			+"<tr><td>TestName</td><td>"+data.TestName+"</td></tr>"
+		 			+"<tr><td>TestTime</td><td>"+data.TestTime+"</td></tr>"
+		 			+"<tr><td>TestCaseNum</td><td>"+data.TestCaseNum+"</td></tr>"
+		 			+"<tr><td>FailCaseNum</td><td>"+data.FailCaseNum+"</td></tr>"
+		 			+"<tr><td>FailRate</td><td>"+data.FailRate+"</td></tr>"
+		 			+"<tr><td>ResultFileRef</td><td>"+"<a href=\""+data.ResultFileRef+"\" target=\"blank\">"+"Click to download the result excel file.</a></td></tr>"
+		 			+"</tbody>"; 
+		 			
+		 	 $("#errortable").append(thtml);
+			
+		 //create the table
+		},
+		error:function(XMLReponse){
+			alert("error");
+		},
+		complete:function(data){
+			//alert($('#tablepart').html());
+		}
+	});
+});
+
+</script>
+</html>
