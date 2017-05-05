@@ -51,16 +51,7 @@ public final class FareCalculatorTester implements TestFacilty{
 		
 		comparator.close();
 		
-		List<String> values = new ArrayList<String>();
-		values.add("Test for triangle");
-		values.add(new Date().toString());
-		values.add(String.valueOf(totalCaseNumber));
-		values.add(String.valueOf(failCaseNumber));
-		Double percentage = new BigDecimal((double)failCaseNumber * 100/ totalCaseNumber).setScale(2, RoundingMode.HALF_UP).doubleValue();
-		values.add(percentage.toString() + " %");
-		values.add(path.replace("\\", "\\\\"));
-		
-		return HttpWrapper.wrap(values);
+		return HttpWrapper.wrap("Fare calculator",totalCaseNumber,failCaseNumber,path);
 	}
 
 

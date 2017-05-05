@@ -1,19 +1,24 @@
 package utils;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public final class HttpWrapper {
 
 	private HttpWrapper() {}
-	public static String wrap(List<String> values)
+	public static String wrap(String testName,int testCaseNum,int failCaseNum,String downloadPath)
 	{
+		
 		String json ="{"
-				+"\"TestName\":"+"\""+values.get(0)+"\","
-				+"\"TestTime\":"+"\""+values.get(1)+"\","
-				+"\"TestCaseNum\":"+"\""+values.get(2)+"\","
-				+"\"FailCaseNum\":"+"\""+values.get(3)+"\","
-				+"\"FailRate\":"+"\""+values.get(4)+"%\","
-				+"\"ResultFileRef\":"+"\""+values.get(5)+"\""
+				+"\"TestName\":"+"\""+testName+"\","
+				+"\"TestTime\":"+"\""+new Date().toString()+"\","
+				+"\"TestCaseNum\":"+"\""+String.valueOf(testCaseNum)+"\","
+				+"\"FailCaseNum\":"+"\""+String.valueOf(failCaseNum)+"\","
+				+"\"FailRate\":"+"\""+String.format("%.2f", (double)failCaseNum * 100/ testCaseNum)+"%\","
+				+"\"ResultFileRef\":"+"\""+downloadPath.replace("\\", "\\\\")+"\""
 				+"}";
 		return json;
 	}
