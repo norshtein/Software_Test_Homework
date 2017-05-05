@@ -1,4 +1,4 @@
-package methods;
+package testunits;
 
 public class Triangle {
 	double a;

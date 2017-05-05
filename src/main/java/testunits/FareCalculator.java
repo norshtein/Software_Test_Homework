@@ -1,4 +1,4 @@
-package methods;
+package testunits;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -14,6 +14,24 @@ public class FareCalculator {
 	private static final double[] pivots = {0,60,120,180,300};
 	private static final double baseDiscount = 0.005;
 	private static final double discountStep = 0.005;
+	
+	private enum ErrorCode
+	{
+		InputIsNotVaildNumber(-1.0),InputRangeIsNotCorrect(-2.0);
+		
+		double ec;
+		private ErrorCode(double d)
+		{
+			this.ec = d;
+		}
+		
+		@Override
+		public String toString()
+		{
+			return String.valueOf(ec);
+		}
+		
+	}
 	
 	static{
 		deferredTimesToCallingTime = new HashMap<Integer,Integer>();
@@ -34,15 +52,16 @@ public class FareCalculator {
 		} 
 		catch(NumberFormatException e)
 		{
-			return truncate(-1.0);
+			return truncate(Double.valueOf(ErrorCode.InputIsNotVaildNumber.toString()));
 		}
 		catch (AssertionError e) 
 		{
-			return truncate(-2.0);
+			return truncate(Double.valueOf(ErrorCode.InputRangeIsNotCorrect.toString()));
 		}
 		
 		return truncate(getTelephoneFare(Double.parseDouble(minutes),Integer.parseInt(deferredTimes)));
 	}
+	
 	private static void checkInput(String arg1,String arg2)
 	{
 		double minutes = Double.parseDouble(arg1);

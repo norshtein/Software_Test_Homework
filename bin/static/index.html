@@ -59,9 +59,7 @@ $("#testbtn").click(function(){
 	var selectprogram=$("#sprogram").val();
 	var testfile=$("#testfile").val();
 	testfile=testfile.substring(testfile.lastIndexOf("\\")+1);
-	alert("hello1");
-	alert(testfile);
-	var filepath="E:\\qqfile\\846510629\\FileRecv\\fare_bouder.xls";
+	var filepath="E:\\qqfile\\846510629\\FileRecv\\fare_decisionTable.xls";
 	alert(selectprogram+" "+filepath);
 	$.ajax({
 		url : "test",

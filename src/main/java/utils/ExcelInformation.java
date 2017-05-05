@@ -6,31 +6,14 @@ public final class ExcelInformation {
 	private int parameterEnd;
 	private int answerBegin;
 	private int answerEnd;
-	private int outputBegin;
-	private int outputEnd;
+	private int outputAnswerBegin;
+	private int outputAnswerEnd;
+	private int outputInformationBegin;
+	private int outputInformationEnd;
 	private int testDataRowBegin = 1;
 	
 	public ExcelInformation(){}
-	public ExcelInformation(int parameterBegin,int parameterEnd,int outputBegin,int outputEnd,int answerBegin,int answerEnd)
-	{
-		this.parameterBegin = parameterBegin;
-		this.parameterEnd = parameterEnd;
-		this.outputBegin = outputBegin;
-		this.outputEnd = outputEnd;
-		this.answerBegin = answerBegin;
-		this.answerEnd = answerEnd;
-	}
-	
-	public ExcelInformation(int parameterBegin,int parameterEnd,int outputBegin,int outputEnd,int answerBegin,int answerEnd,int testDataRowBegin)
-	{
-		this.parameterBegin = parameterBegin;
-		this.parameterEnd = parameterEnd;
-		this.outputBegin = outputBegin;
-		this.outputEnd = outputEnd;
-		this.answerBegin = answerBegin;
-		this.answerEnd = answerEnd;
-		this.testDataRowBegin = testDataRowBegin;
-	}
+
 	public int getParameterBegin() {
 		return parameterBegin;
 	}
@@ -42,18 +25,6 @@ public final class ExcelInformation {
 	}
 	public void setParameterEnd(int parameterEnd) {
 		this.parameterEnd = parameterEnd;
-	}
-	public int getOutputBegin() {
-		return outputBegin;
-	}
-	public void setOutputBegin(int outputBegin) {
-		this.outputBegin = outputBegin;
-	}
-	public int getOutputEnd() {
-		return outputEnd;
-	}
-	public void setOutputEnd(int outputEnd) {
-		this.outputEnd = outputEnd;
 	}
 	public int getTestDataRowBegin() {
 		return testDataRowBegin;
@@ -72,5 +43,37 @@ public final class ExcelInformation {
 	}
 	public void setAnswerEnd(int answerEnd) {
 		this.answerEnd = answerEnd;
+	}
+
+	public int getOutputAnswerBegin() {
+		return outputAnswerBegin;
+	}
+
+	public void setOutputAnswerBegin(int outputAnswerBegin) {
+		this.outputAnswerBegin = outputAnswerBegin;
+	}
+
+	public int getOutputAnswerEnd() {
+		return outputAnswerEnd;
+	}
+
+	public void setOutputAnswerEnd(int outputAnswerEnd) {
+		this.outputAnswerEnd = outputAnswerEnd;
+	}
+
+	public int getOutputInformationBegin() {
+		return outputInformationBegin;
+	}
+
+	public void setOutputInformationBegin(int outputInformationBegin) {
+		this.outputInformationBegin = outputInformationBegin;
+	}
+
+	public int getOutputInformationEnd() {
+		return outputInformationEnd;
+	}
+
+	public void setOutputInformationEnd(int outputInformationEnd) {
+		this.outputInformationEnd = outputInformationEnd;
 	}
 }
