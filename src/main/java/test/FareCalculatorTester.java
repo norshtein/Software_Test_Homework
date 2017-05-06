@@ -21,16 +21,7 @@ public final class FareCalculatorTester implements TestFacilty{
 	private static ExcelInformation excelInformation;
 	static
 	{
-		excelInformation = new ExcelInformation();
-		excelInformation.setTestDataRowBegin(1);
-		excelInformation.setParameterBegin(1);
-		excelInformation.setParameterEnd(3);
-		excelInformation.setAnswerBegin(3);
-		excelInformation.setAnswerEnd(4);
-		excelInformation.setOutputAnswerBegin(4);
-		excelInformation.setOutputAnswerEnd(5);
-		excelInformation.setOutputInformationBegin(5);
-		excelInformation.setOutputInformationEnd(8);
+		excelInformation = new ExcelInformation(1,3,3,4,4,5,5,8,1);
 	}
 	
 	private FareCalculatorTester()

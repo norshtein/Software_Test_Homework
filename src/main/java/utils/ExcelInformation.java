@@ -14,6 +14,31 @@ public final class ExcelInformation {
 	
 	public ExcelInformation(){}
 
+	public ExcelInformation(int parameterBegin,int parameterEnd,int answerBegin,int answerEnd,int outputAnswerBegin,int outputAnswerEnd,int outputInformationBegin,int outputInformationEnd)
+	{
+		this.parameterBegin = parameterBegin;
+		this.parameterEnd = parameterEnd;
+		this.answerBegin = answerBegin;
+		this.answerEnd = answerEnd;
+		this.outputAnswerBegin = outputAnswerBegin;
+		this.outputAnswerEnd = outputAnswerEnd;
+		this.outputInformationBegin = outputInformationBegin;
+		this.outputInformationEnd = outputInformationEnd;
+
+	}
+	
+	public ExcelInformation(int parameterBegin,int parameterEnd,int answerBegin,int answerEnd,int outputAnswerBegin,int outputAnswerEnd,int outputInformationBegin,int outputInformationEnd,int rowBegin)
+	{
+		this.parameterBegin = parameterBegin;
+		this.parameterEnd = parameterEnd;
+		this.answerBegin = answerBegin;
+		this.answerEnd = answerEnd;
+		this.outputAnswerBegin = outputAnswerBegin;
+		this.outputAnswerEnd = outputAnswerEnd;
+		this.outputInformationBegin = outputInformationBegin;
+		this.outputInformationEnd = outputInformationEnd;
+		this.testDataRowBegin = rowBegin;
+	}
 	public int getParameterBegin() {
 		return parameterBegin;
 	}
