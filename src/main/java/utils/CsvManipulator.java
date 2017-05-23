@@ -9,14 +9,14 @@ import java.io.IOException;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.hssf.usermodel.*;
 
-
-
 public class CsvManipulator {
 
 	private Workbook wb;
 	private FileInputStream fis;
 	private Sheet st;
 	private String path;
+	private final String prefix = "copy_";
+	
 	public CsvManipulator(String path) throws FileNotFoundException, IOException
 	{
 		fis = new FileInputStream(new File(path));
@@ -49,17 +49,35 @@ public class CsvManipulator {
 		return new DataFormatter().formatCellValue(st.getRow(row).getCell(col));
 	}
 	
-	public void close() throws IOException 
+	//return download path
+	public String close() throws IOException 
 	{
 		fis.close();
-		FileOutputStream fos = new FileOutputStream(new File(path));
+		String outputFilename = getOutputFileName();
+		File outputFile = new File(outputFilename);
+		outputFile.createNewFile();
+		FileOutputStream fos = new FileOutputStream(outputFile);
 		wb.write(fos);
 		fos.close();
 		wb.close();
+		
+		return outputFilename;
 	}
 	
 	public int getRows()
 	{
 		return st.getLastRowNum() + 1;
+	}
+	
+	private String getOutputFileName()
+	{
+		String[] s = path.split("\\\\");
+		s[s.length - 1] = prefix + s[s.length - 1];
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0;i < s.length;i++)
+			sb.append(s[i] + (i == s.length - 1 ? "" : "\\\\"));
+		
+		System.out.println(sb.toString());
+		return sb.toString();
 	}
 }

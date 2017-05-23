@@ -21,7 +21,7 @@ width:150px;
 <title>Insert title here</title>
 </head>
 <body>
-<h1 class="text-info">Programs Test page.<small>created by CZY and ZQB.</small></h1>
+<h1 class="text-info">Programs Test page.<small>created by STY, CZY and ZQB.</small></h1>
 <hr />
 
 <form class="form-inline" role="form" onsubmit="return false">
@@ -55,10 +55,18 @@ width:150px;
 </body>
 
 <script>
+
+
 $("#testbtn").click(function(){
 	var selectprogram=$("#sprogram").val();
-	var filepath="E:\\qqfile\\846510629\\FileRecv\\fare_bouder.xls";
-	alert(selectprogram+" "+filepath);
+	var testfile=$("#testfile").val();
+	//alert(testfile);
+	testfile=testfile.substring(testfile.lastIndexOf("\\")+1);
+	var filepath="E:\\qqfile\\846510629\\FileRecv\\";
+	//var fp2="E:\\a_tc\\";
+	testfile=filepath+testfile;
+	//testfile=fp2+testfile;
+	//alert(selectprogram+" "+testfile);
 	$.ajax({
 		url : "test",
 		type: 'GET',
@@ -66,7 +74,7 @@ $("#testbtn").click(function(){
 		cache:false,
 		data:{
 			'program':selectprogram,
-			'testfile':filepath,
+			'testfile':testfile,
 		},
 		success:function(data){
 			 $("#errortable").html("");

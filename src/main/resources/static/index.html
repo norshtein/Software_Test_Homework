@@ -36,9 +36,8 @@ width:150px;
 		</div>
 		<div class="form-group col-sm-3 filediv">
 			<label for="testfile" class="sr-only">input file</label>
-			<input type="file" id="testfile" onchange="setFileURL(this)"/>
+			<input type="file" id="testfile"/>
 		</div>
-		<input type="hidden" name="fileurl" id="fileurl"/>
 		<button class="btn btn-primary" id="testbtn">Test!</button>
 </form>
 <div>
@@ -56,65 +55,18 @@ width:150px;
 </body>
 
 <script>
-function setFileURL(uploadFile){
-		var file_url="";
-		var Sys = {}; 
-		var ua = navigator.userAgent.toLowerCase(); 
-		var s; 
-		(s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] : 
-		(s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] : 
-		(s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] : 
-		(s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] : 
-		(s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
-		
-		if(Sys.ie<="6.0"){
-		   file_url = uploadFile.value;
-		 }
-		else if(Sys.ie>="7.0"){
-		   uploadFile.select();
-		   uploadFile.blur();
-		   file_url = document.selection.createRange().text;
-		 }
-		else if(Sys.firefox||Sys.chrome){
-		   
-			try{  
-				
-				if(uploadFile.files)
-				{  
-				      file = uploadFile.files[0];  
-				}   
-				//Firefox
-				try{  
-				      //Firefox7.0   
-				      file_url =  file.getAsDataURL(); 
-				      //alert("//Firefox7.0"+fileRUL);                           
-				}catch(e){  
-				      //Firefox8.0                           
-				      file_url = window.URL.createObjectURL(file); 
-				      //alert("Firefox8.0 "+fileURL);
-				      //alert("//Firefox8.0"+imgRUL);  
-				}  
-			}catch(e){                       
-				if (uploadFile) {                            
-				    var reader = new FileReader();   
-				    reader.onload = function (e) {                                        
-				        fileURL = e.target.result;  
-				        //alert("last "+fileURL);
-				    };  
-				    reader.readAsDataURL(file.files[0]);   
-				}    
-			}  	  
-		}
-	$("#fileurl").prop("value",file_url);
-	//alert("file_url:"+file_url);
-}
+
 
 $("#testbtn").click(function(){
 	var selectprogram=$("#sprogram").val();
-	var testfile=$("fileurl").val();
-	//testfile=testfile.substring(testfile.lastIndexOf("\\")+1);
-	//var filepath="E:\\qqfile\\846510629\\FileRecv\\fare_decisionTable.xls";
-	//alert(selectprogram+" "+filepath);
+	var testfile=$("#testfile").val();
+	//alert(testfile);
+	testfile=testfile.substring(testfile.lastIndexOf("\\")+1);
+	var filepath="E:\\qqfile\\846510629\\FileRecv\\";
+	//var fp2="E:\\a_tc\\";
+	testfile=filepath+testfile;
+	//testfile=fp2+testfile;
+	//alert(selectprogram+" "+testfile);
 	$.ajax({
 		url : "test",
 		type: 'GET',

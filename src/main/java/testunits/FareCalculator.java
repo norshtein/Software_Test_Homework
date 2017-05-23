@@ -14,7 +14,7 @@ public class FareCalculator {
 	private static final double[] pivots = {0,60,120,180,300};
 	private static final double baseDiscount = 0.005;
 	private static final double discountStep = 0.005;
-	
+	private static final double eps = 1e-4;
 	private enum ErrorCode
 	{
 		InputIsNotVaildNumber(-1.0),InputRangeIsNotCorrect(-2.0);
@@ -39,8 +39,8 @@ public class FareCalculator {
 		deferredTimesToCallingTime.put(1, 0);
 		deferredTimesToCallingTime.put(2, 60);
 		deferredTimesToCallingTime.put(3, 120);
-		deferredTimesToCallingTime.put(4, 120);
-		deferredTimesToCallingTime.put(5, 120);
+		deferredTimesToCallingTime.put(4, 300);
+		deferredTimesToCallingTime.put(5, 300);
 		deferredTimesToCallingTime.put(6, 300);
 	}
 	
@@ -59,7 +59,7 @@ public class FareCalculator {
 			return truncate(Double.valueOf(ErrorCode.InputRangeIsNotCorrect.toString()));
 		}
 		
-		return truncate(getTelephoneFare(Double.parseDouble(minutes),Integer.parseInt(deferredTimes)));
+		return truncate(getTelephoneFare(Double.parseDouble(minutes),Integer.parseInt(deferredTimes)) + eps);
 	}
 	
 	private static void checkInput(String arg1,String arg2)
@@ -67,7 +67,9 @@ public class FareCalculator {
 		double minutes = Double.parseDouble(arg1);
 		int deferredTimes = Integer.parseInt(arg2);
 		assert minutes >= 0;
+		assert minutes <= 43200;
 		assert deferredTimes >= 0;
+		assert deferredTimes < 12;
 	}
 
 	private static double getTelephoneFare(double minutes,int deferredTimes)

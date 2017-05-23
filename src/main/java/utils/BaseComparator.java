@@ -63,9 +63,10 @@ public class BaseComparator {
 		}
 	}
 	
-	public void close() throws IOException
+	//return output filename
+	public String close() throws IOException
 	{
-		cv.close();
+		return cv.close();
 	}
 	
 	protected boolean isEqual(List<String> a,List<String> b)

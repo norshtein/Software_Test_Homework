@@ -17,5 +17,11 @@ public class TestController {
 		String answer = TestManager.test(program, testfile);
 		return answer;
 	}
-
+	
+	@RequestMapping(value="/singletest",method = RequestMethod.GET)
+	public String singleTestControl(@RequestParam("program")String program,@RequestParam("parameter")String parameter) throws Exception
+	{
+		String answer = TestManager.singleTest(program, parameter);
+		return answer;
+	}
 }
