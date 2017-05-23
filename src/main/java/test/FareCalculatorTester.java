@@ -16,8 +16,6 @@ import utils.ExcelInformation;
 import utils.HttpWrapper;
 
 public final class FareCalculatorTester extends TestFacilty{
-	
-
 	public FareCalculatorTester(ExcelInformation ex) {
 		super(ex);
 	}

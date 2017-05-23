@@ -13,13 +13,13 @@ public class BaseComparator {
 
 	protected CsvManipulator cv;
 	protected ExcelInformation ei;
-	protected Class invoker;
+	protected TestFacilty testFacilty;
 	protected int cursor;
 	
-	public BaseComparator(String path,ExcelInformation excelInformation,Class thisClass) throws FileNotFoundException, IOException {
+	public BaseComparator(String path,ExcelInformation excelInformation,TestFacilty tf) throws FileNotFoundException, IOException {
 		cv = new CsvManipulator(path);
 		ei = excelInformation;
-		invoker = thisClass;
+		testFacilty = tf;
 		cursor  = excelInformation.getTestDataRowBegin();
 	}
 	
@@ -39,7 +39,7 @@ public class BaseComparator {
 		for(int j = ei.getParameterBegin();j < ei.getParameterEnd();j++)
 			parameters.add(cv.read(cursor, j));
 		
-		List<String> testResult = ((TestFacilty)(invoker.getMethod("getInstance").invoke(null))).eval(parameters);
+		List<String> testResult = testFacilty.eval(parameters);
 		for(int i = ei.getOutputAnswerBegin();i < ei.getOutputAnswerEnd();i++)
 			cv.write(cursor, i, testResult.get(i - ei.getOutputAnswerBegin()));
 		

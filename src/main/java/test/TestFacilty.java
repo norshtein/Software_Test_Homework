@@ -15,8 +15,8 @@ public abstract class TestFacilty {
 	{
 		this.excelInformation = ex;
 	}
-	public String test(String path,String program) throws Exception {
-		BaseComparator comparator = new BaseComparator(path,excelInformation,this.getClass());
+	public String test(String program,String path) throws Exception {
+		BaseComparator comparator = new BaseComparator(path,excelInformation,this);
 		int failCaseNumber = 0;
 		int totalCaseNumber = comparator.getTestCaseNum();
 		
@@ -30,13 +30,20 @@ public abstract class TestFacilty {
 		
 		return HttpWrapper.wrap(program,totalCaseNumber,failCaseNumber,outputPath);
 	}
+	
 	public abstract List<String> eval(List<String> parameters);
+	
 	public List<String> singleTest(String parameter) throws Exception {
 		JSONObject json = new JSONObject(parameter);
 		List<String> ls = new ArrayList<String>();
 		Iterator<String> itor = json.keys();
 		while(itor.hasNext())
-			ls.add(json.getString(itor.next()));
+		{
+			String pa = json.get(itor.next()).toString();
+			System.out.println(pa);
+			ls.add(pa);
+			
+		}
 		return eval(ls);
 	}
 }

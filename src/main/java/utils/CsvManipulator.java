@@ -19,6 +19,7 @@ public class CsvManipulator {
 	
 	public CsvManipulator(String path) throws FileNotFoundException, IOException
 	{
+		System.out.println(path);
 		fis = new FileInputStream(new File(path));
 		wb = new HSSFWorkbook(fis);
 		st = wb.getSheetAt(0);

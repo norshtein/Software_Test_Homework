@@ -2,71 +2,256 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 
-<script src="jquery/jquery.js"></script>
 <script src="jquery/jquery.min.js"></script>	
-<script src="bootstrap/js/bootstrap.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
+*{
+margin:0px;
+padding:0px;
+}
+#showCenter{
+width:90%;
+margin:0 auto;
+}
 .filediv {
 position:relative;
 top:10px;
 }
-#testbtn {
+.testbtn {
 width:150px;
+}
+.myNav{
+padding:10px 10px 10px 20px;
+}
+.myNav li{
+padding:0px 3px;
+}
+.tab-content{
+padding:10px 10px 10px 20px;
+}
+.single-test-btn{
+position:relative;
+left:28px;
+top:20px;
+}
+.result-nav{
+padding:10px 10px 10px 20px;
+}
+.result-nav li{
+padding:0px 3px;
+}
+#singleResult{
+display:none;
+}
+.font-bigger{
+font-size:20px;
 }
 </style>
 <title>Insert title here</title>
 </head>
 <body>
-<h1 class="text-info">Programs Test page.<small>created by STY, CZY and ZQB.</small></h1>
-<hr />
-
-<form class="form-inline" role="form" onsubmit="return false">
-		<div class="form-group col-sm-3">
-			<label for="sprogram" class="control-label">Program&nbsp;&nbsp;&nbsp;</label>
-			<select class="form-control" id="sprogram">
-				<option>triangle</option>
-				<option>calendar</option>
-				<option>computerSale</option>
-				<option>fare</option>
-			</select>
+<div id="showCenter">
+	<h1 class="text-info">Programs Test page.<small>created by STY, CZY and ZQB.</small></h1>
+	<hr />
+	<div class="myNav">
+		<ul class="nav nav-pills">
+			<li class="active"><a data-toggle="tab" data-target="#batch-process">从文件读入</a></li>
+			<li><a data-toggle="tab" data-target="#single-process">手动测试</a></li>
+		</ul>
+		<br />
+	</div>
+	<div class="tab-content">
+		<!-- batch process -->
+		<div class="tab-pane active" id="batch-process">
+			<form class="form-inline" role="form" onsubmit="return false">
+			<div class="form-group col-sm-3">
+				<label for="sprogram" class="control-label">Program&nbsp;&nbsp;&nbsp;</label>
+					<select class="form-control" id="sprogram">
+						<option>triangle</option>
+						<option>calendar</option>
+						<option>computerSale</option>
+						<option>fare</option>
+					</select>
+				</div>
+				<div class="form-group col-sm-3 filediv">
+					<label for="testfile" class="sr-only">input file</label>
+					<input type="file" id="testfile"/>
+				</div>
+				<button class="btn btn-primary testbtn" id="testbtn">Test!</button>
+			</form>
 		</div>
-		<div class="form-group col-sm-3 filediv">
-			<label for="testfile" class="sr-only">input file</label>
-			<input type="file" id="testfile"/>
+		
+		<!-- single process -->
+		<div class="tab-pane" id="single-process">
+			<div class="row">
+				<div class="col-md-6 form-inline">
+					<label class="col-md-1" for="sprogram2" class="control-label">Program&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<select class="col-md-4 col-md-offset-1 form-control" onchange="showDetailParam(this);" id="sprogram2">
+						<option>triangle</option>
+						<option>calendar</option>
+						<option>computerSale</option>
+						<option>fare</option>
+					</select>
+				</div>
+			</div>
+			<br/>
+			
+			<div class="row tab-content detail-param">
+				<div class="tab-pane fade in active" id="triangle-param">
+					<form class="form-inline">
+						<label>&nbsp;&nbsp;Param:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+						a&nbsp;&nbsp;<input class="form-control" type="text" placeholder="1~99"/>&nbsp;&nbsp;&nbsp;
+						b&nbsp;&nbsp;<input class="form-control" type="text" placeholder="1~99"/>&nbsp;&nbsp;&nbsp;
+						c&nbsp;&nbsp;<input class="form-control" type="text" placeholder="1~99"/>
+					</form>
+				</div>
+				
+				<div class="tab-pane fade" id="calendar-param">
+					<form class="form-inline">
+						<label>&nbsp;&nbsp;Param&nbsp;&nbsp;&nbsp;</label>
+						Year&nbsp;&nbsp;<input class="form-control" type="text" placeholder="1~99"/>&nbsp;&nbsp;&nbsp;
+						Month&nbsp;&nbsp;<input class="form-control" type="text" placeholder="1~99"/>&nbsp;&nbsp;&nbsp;
+						Day&nbsp;&nbsp;<input class="form-control" type="text" placeholder="1~99"/>
+						
+					</form>
+				</div>
+				
+				<div class="tab-pane fade" id="computerSale-param">
+					<form class="form-inline">
+						<label>&nbsp;&nbsp;Param&nbsp;&nbsp;&nbsp;&nbsp;</label>
+						Host&nbsp;&nbsp;<input class="form-control" type="text" placeholder="1~99"/>&nbsp;&nbsp;&nbsp;
+						Screen&nbsp;&nbsp;<input class="form-control" type="text" placeholder="1~99"/>&nbsp;&nbsp;&nbsp;
+						Device&nbsp;&nbsp;<input class="form-control" type="text" placeholder="1~99"/>
+					</form>
+				</div>
+				
+				<div class="tab-pane fade" id="fare-param">
+					<form class="form-inline">
+						<label>&nbsp;&nbsp;Param&nbsp;&nbsp;&nbsp;&nbsp;</label>
+						Time&nbsp;&nbsp;<input class="form-control" type="text" placeholder="1~99"/>&nbsp;&nbsp;&nbsp;
+						Delay&nbsp;&nbsp;<input class="form-control" type="text" placeholder="1~99"/>
+					</form>
+				</div>
+			</div>
+			
+			<div class="row single-test-btn">
+				<button class="btn btn-primary testbtn" id="testbtn2">Test!</button>
+			</div>
+			
 		</div>
-		<button class="btn btn-primary" id="testbtn">Test!</button>
-</form>
-<div>
-<br />
-<hr />
-<br />
-<!-- <a href="../test.txt" target="blank">Download the javaee.txt.</a>
-<a href="F:/Tools/eclipseneon/workspace/TestProgram2.0/WebContent/downloadfile/result2017_03_24_02_53_36.xls" target="blank">Download the excel file.</a> -->
-<div class="container">
-<table class="table table-striped table-bordered" id="errortable">
-</table>
+	</div>
+	
+	
+	<br />
+	<hr />
+	<!-- <a href="../test.txt" target="blank">Download the javaee.txt.</a>
+	<a href="F:/Tools/eclipseneon/workspace/TestProgram2.0/WebContent/downloadfile/result2017_03_24_02_53_36.xls" target="blank">Download the excel file.</a> -->
+	<div id="singleResult">
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<strong>The result is:</strong>&nbsp;&nbsp;&nbsp;<span class="font-bigger"></span></p>
+	</div>
+	<div  id="batchResult">
+		<ul class="result-nav nav nav-pills">
+			<li class="active"><a data-toggle="tab" data-target="#rsTable">Table</a></li>
+			<li><a data-toggle="tab" data-target="#rsChart">Chart</a></li>
+		</ul>
+		<div class="container tab-content">
+			<div class="tab-pane fade in active" id="rsTable">
+				<p>World</p>
+				<table class="table table-striped table-bordered table-hover" id="errortable">
+				</table>
+			</div>
+			<div class="tab-pane fade" id="rsChart">Hello</div>
+		</div>
+	</div>
+	
 </div>
-</div>
-
 </body>
 
 <script>
-
-
+$(document).ready(function(){
+	$('.myNav li').click(function(){
+		if($(this).text()==$('.myNav li').first().text()){
+			if($('#singleResult').css('display')=='block')
+			{
+				$('#singleResult').css('display','none');
+			}
+			if($('#batchResult').css('display')=='none')
+			{
+				$('#batchResult').css('display','block');
+			}
+		}
+		else
+		{
+			if($('#singleResult').css('display')=='none')
+			{
+				$('#singleResult').css('display','block');
+			}
+			if($('#batchResult').css('display')=='block')
+			{
+				$('#batchResult').css('display','none');
+			}	
+		}
+	});
+});
+function showDetailParam(obj){
+	$('.detail-param>.tab-pane').removeClass("in active");
+	var val=$(obj).val();
+	val+='-param';
+	$('#'+val).addClass("in active");
+}
+$("#testbtn2").click(function(){
+	var selectprogram=$('#sprogram2').val();
+	var paramJson='{';
+	var allInputs=$('.detail-param>.tab-pane.active>form').children('input');
+	var i=0;
+	//alert('program:'+selectprogram);
+	//alert(allInputs.length);
+	//alert(allInputs[0].value);
+	for(var i=0;i<allInputs.length;i++)
+	{
+		//alert(allInputs[i].value);
+		paramJson+="'"+i+"':"+allInputs[i].value;
+		if(i!=allInputs.length-1)
+			paramJson+=',';
+		else
+			paramJson+='}';
+	}
+	//alert(paramJson);
+	$.ajax({
+		url: "singletest",
+		type: "GET",
+		dataType: "json",
+		cache: false,
+		data:{
+			'program':selectprogram,
+			'parameter':paramJson,
+		},
+		success:function(data){
+			//alert("success");
+			$("#singleResult p span").text(data);
+		},
+		error:function(XMLResponse){
+			alert("error");
+		},
+		complete:function(data){
+			//alert($('#tablepart').html());
+		}
+	});
+});
 $("#testbtn").click(function(){
 	var selectprogram=$("#sprogram").val();
 	var testfile=$("#testfile").val();
-	//alert(testfile);
+	alert(testfile);
 	testfile=testfile.substring(testfile.lastIndexOf("\\")+1);
 	var filepath="E:\\qqfile\\846510629\\FileRecv\\";
 	//var fp2="E:\\a_tc\\";
 	testfile=filepath+testfile;
 	//testfile=fp2+testfile;
-	//alert(selectprogram+" "+testfile);
+	alert(selectprogram+" "+testfile);
 	$.ajax({
 		url : "test",
 		type: 'GET',
@@ -97,7 +282,7 @@ $("#testbtn").click(function(){
 			
 		 //create the table
 		},
-		error:function(XMLReponse){
+		error:function(XMLResponse){
 			alert("error");
 		},
 		complete:function(data){

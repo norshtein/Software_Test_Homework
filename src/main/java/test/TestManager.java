@@ -12,7 +12,7 @@ public class TestManager {
 	static {
 		typeToTester = new HashMap<String,TestFacilty>();
 		typeToTester.put("fare", new FareCalculatorTester(new ExcelInformation(1,3,3,4,4,5,5,8,1)));
-		typeToTester.put("computerSale", new ComputerSaleTester(new ExcelInformation(1,3,3,4,4,5,5,8,1)));
+		typeToTester.put("computerSale", new ComputerSaleTester(new ExcelInformation(1,4,4,5,5,6,6,9,1)));
 	}
 	
 	public static String test(String type,String path) throws Exception
