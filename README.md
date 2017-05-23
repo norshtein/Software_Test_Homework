@@ -13,3 +13,4 @@
 1. 在testunits包下创建待测函数
 2. 在test包下创建tester,继承TestFacilty类,实现与待测函数匹配的eval函数
 3. 在test包下的TestManger.java中注册tester即可
+4. 当然，你还需要改一下前端
