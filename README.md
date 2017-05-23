@@ -14,3 +14,8 @@
 2. 在test包下创建tester,继承TestFacilty类,实现与待测函数匹配的eval函数
 3. 在test包下的TestManger.java中注册tester即可
 4. 当然，你还需要改一下前端
+
+## Todolist
+1. 用DI将tester注册到TestManager中
+2. 实现一个文件上传功能这样就可以跑在server上了
+3. <del>入门一下前端</del> 锻炼一下前端抄模板能力
