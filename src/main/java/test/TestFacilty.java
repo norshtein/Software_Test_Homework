@@ -15,6 +15,7 @@ public abstract class TestFacilty {
 	{
 		this.excelInformation = ex;
 	}
+	
 	public String test(String program,String path) throws Exception {
 		BaseComparator comparator = new BaseComparator(path,excelInformation,this);
 		int failCaseNumber = 0;
