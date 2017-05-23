@@ -6,7 +6,7 @@
 
 <script src="jquery/jquery.min.js"></script>	
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="bootstrap/js/echarts.simple.min.js"></script>
+<script src="bootstrap/js/canvasjs.min.js"></script>
 <style type="text/css">
 *{
 margin:0px;
@@ -211,48 +211,39 @@ function showDetailParam(obj){
 }
 function showPieChart(failNum,successNum){
 	//alert("fail:"+failNum+"suc:"+successNum);
-	var myChart = echarts.init(document.getElementById('pieChart'));
-
-     var option = {
-	    		 	title : {
-	    		        text: 'Test Result',
-	    		        subtext: 'piechart',
-	    		        x:'center'
-	    		    },
-	    		    tooltip : {
-	    		        trigger: 'item',
-	    		        formatter: "{a} <br/>{b} : {c} ({d}%)"
-	    		    },
-	    		    color:['green','red'],
-	    		    legend: {
-	    		        orient: 'vertical',
-	    		        left: 'left',
-	    		        data: ['成功','失败']
-	    		    },
-	    		    series : [
-	    		        {
-	    		            name: '测试结果',
-	    		            type: 'pie',
-	    		            radius : '55%',
-	    		            center: ['50%', '60%'],
-	    		            data:[
-	    		                {value:successNum, name:'成功'},
-	    		                {value:failNum, name:'失败'}
-	    		            ],
-	    		            itemStyle: {
-	    		                emphasis: {
-	    		                    shadowBlur: 10,
-	    		                    shadowOffsetX: 0,
-	    		                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-	    		                }
-	    		            }
-	    		        }
-	    		    ]
-     			};
-	
-     // 使用刚指定的配置项和数据显示图表。
-     myChart.setOption(option);
+	var totalNum=failNum+successNum;
+	var chart = new CanvasJS.Chart("pieChart",
+			{
+				title:{
+					text: "-Test Result-"
+				},
+		                animationEnabled: true,
+				legend:{
+					verticalAlign: "center",
+					horizontalAlign: "left",
+					fontSize: 20,
+					fontFamily: "Helvetica"        
+				},
+				theme: "theme1",
+				data: [
+				{        
+					type: "pie",       
+					indexLabelFontFamily: "Garamond",       
+					indexLabelFontSize: 20,
+					indexLabel: "{label} {rate}%",
+					startAngle:-20,      
+					showInLegend: true,
+					toolTipContent:"{legendText} {y},{rate}%",
+					dataPoints: [
+						{  y: successNum,rate:(successNum/(totalNum)*100).toFixed(2), legendText:"success", label: "success" },
+						{  y: failNum, rate:(failNum/(totalNum)*100).toFixed(2),legendText:"failure", label: "failure" }
+					]
+				}
+				]
+			});
+			chart.render();
 }
+
 $("#testbtn2").click(function(){
 	var selectprogram=$('#sprogram2').val();
 	var paramJson='{';
