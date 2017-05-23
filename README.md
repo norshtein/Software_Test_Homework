@@ -5,9 +5,9 @@
 下载zip到本地或者git clone到本地之后用gradle构建本工程
 
 ## 如何运行
-1. 保证8080端口未被占用（或手工更改代码中的端口）
+1. 保证8080端口未被占用（或手工更改代码中的监听端口）
 2. 选定Application.java -> Run as Java Application
-3. 在本地浏览器中访问http://localhost:8080
+3. 在本地浏览器中访问http://localhost:8080 （或更改后的端口）
 
 ## 如何添加新的测试函数
 1. 在testunits包下创建待测函数
