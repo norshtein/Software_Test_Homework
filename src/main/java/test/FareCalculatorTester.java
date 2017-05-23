@@ -27,5 +27,4 @@ public final class FareCalculatorTester extends TestFacilty{
 		resultList.add(String.format("%.2f", fare));
 		return resultList;
 	}
-
 }

@@ -15,6 +15,7 @@ public class FareCalculator {
 	private static final double baseDiscount = 0.005;
 	private static final double discountStep = 0.005;
 	private static final double eps = 1e-4;
+	private static final int maxMinute = 44640;
 	private enum ErrorCode
 	{
 		InputIsNotVaildNumber(-1.0),InputRangeIsNotCorrect(-2.0);
@@ -67,7 +68,7 @@ public class FareCalculator {
 		double minutes = Double.parseDouble(arg1);
 		int deferredTimes = Integer.parseInt(arg2);
 		assert minutes >= 0;
-		assert minutes <= 43200;
+		assert minutes <= maxMinute;
 		assert deferredTimes >= 0;
 		assert deferredTimes < 12;
 	}
